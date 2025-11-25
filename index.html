@@ -23,50 +23,14 @@
             </select>
         </div>
 
-        <!-- User Avatar Dropdown -->
-        <div class="userAvatarContainer">
-            <button class="userAvatar" type="button">
-                <span class="userAvatar__initials">JD</span>
-            </button>
-            <div class="userDropdown">
-                <div class="userDropdown__header">
-                    <span class="userDropdown__name">John Doe</span>
-                    <span class="userDropdown__email">john.doe@potraz.gov.zw</span>
-                </div>
-                <div class="userDropdown__divider"></div>
-                <a href="../index.html" class="userDropdown__item">
-                    <i class="fas fa-home"></i>
-                    <span>Landing Page</span>
-                </a>
-                <a href="#" class="userDropdown__item">
-                    <i class="fas fa-cog"></i>
-                    <span>Settings</span>
-                </a>
-                <div class="userDropdown__item userDropdown__item--toggle">
-                    <div class="userDropdown__itemLeft">
-                        <i class="fas fa-moon"></i>
-                        <span>Dark Mode</span>
-                    </div>
-                    <label class="darkModeToggle">
-                        <input type="checkbox" id="darkModeToggle">
-                        <span class="darkModeToggle__slider"></span>
-                    </label>
-                </div>
-                <div class="userDropdown__divider"></div>
-                <a href="#" class="userDropdown__item userDropdown__item--logout">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>Logout</span>
-                </a>
-            </div>
-        </div>
-
-        <div class="dashboardsWrapper">
-
-            <button class="collapseDashboardWrapper">
-                <span class="collpaseDashboardWrapper">
-                    <i class="fas fa-chevron-left"></i>
-                </span>
-            </button>
+        <!-- Top Right Controls -->
+        <div class="topRightControls">
+            <div class="dashboardsWrapper">
+                <button class="collapseDashboardWrapper">
+                    <span class="collpaseDashboardWrapper">
+                        <i class="fas fa-chevron-right"></i>
+                    </span>
+                </button>
 
                 <ul class="topSwitcherDashboards">
                     <li><a href="#" class="activeBtn"><span class="iconWrapper"><i class="fas fa-chart-line"></i></span>Dashboards</a></li>
@@ -568,9 +532,46 @@
                         </div>
                 </div>
                 <!-- Map Legends End -->
-            
-        </div>
 
+            </div>
+
+            <!-- User Avatar Dropdown -->
+            <div class="userAvatarContainer">
+                <button class="userAvatar" type="button">
+                    <span class="userAvatar__initials">JD</span>
+                </button>
+                <div class="userDropdown">
+                    <div class="userDropdown__header">
+                        <span class="userDropdown__name">John Doe</span>
+                        <span class="userDropdown__email">john.doe@potraz.gov.zw</span>
+                    </div>
+                    <div class="userDropdown__divider"></div>
+                    <a href="../index.html" class="userDropdown__item">
+                        <i class="fas fa-home"></i>
+                        <span>Landing Page</span>
+                    </a>
+                    <a href="#" class="userDropdown__item">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                    <div class="userDropdown__item userDropdown__item--toggle">
+                        <div class="userDropdown__itemLeft">
+                            <i class="fas fa-moon"></i>
+                            <span>Dark Mode</span>
+                        </div>
+                        <label class="darkModeToggle">
+                            <input type="checkbox" id="darkModeToggle">
+                            <span class="darkModeToggle__slider"></span>
+                        </label>
+                    </div>
+                    <div class="userDropdown__divider"></div>
+                    <a href="#" class="userDropdown__item userDropdown__item--logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </div>
+        </div>
 
         <div class="toolsContainer">
             <a href="#" class="zoomInBtn" uk-tooltip="title: Zoom In; pos: left">

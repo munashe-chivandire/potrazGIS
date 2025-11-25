@@ -23,12 +23,12 @@ body {
         max-height: 45rem;
         width: 40rem;
         background-color: #ffffff;
-        position: absolute;
-        top: 5rem;
-        left: 1rem;
         border-radius: 10px;
-        z-index: 1000;
         overflow: hidden;
+        position: relative;
+        transform-origin: top right;
+        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                    opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
         .collapseDashboardWrapper {
             position: absolute;
@@ -39,7 +39,6 @@ body {
             font-size: 1rem;
             cursor: pointer;
             z-index: 10;
-            transition: transform 0.3s ease-in-out;
             height: 2rem;
             width: 2rem;
             display: flex;
@@ -47,6 +46,11 @@ body {
             justify-content: center;
             background-color: #f0f0f0;
             border-radius: 4px;
+            transition: background-color 0.15s ease;
+
+            &:hover {
+                background-color: #e0e0e0;
+            }
 
             .collpaseDashboardWrapper {
                 height: 100%;
@@ -58,8 +62,15 @@ body {
                 i {
                     color: #333;
                     font-size: 0.9rem;
+                    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
                 }
             }
+        }
+
+        &.collapsed {
+            transform: scale(0.95) translateX(20px);
+            opacity: 0;
+            pointer-events: none;
         }
 
         .topSwitcherDashboards {
@@ -892,8 +903,8 @@ body {
     .toolsContainer {
         position: absolute;
         z-index: 10000;
-        bottom: 5rem;
-        right: 1rem;
+        top: 4rem;
+        left: 1rem;
         width: 2.5rem;
         gap: .5rem;
         display: flex;
@@ -932,13 +943,13 @@ body {
     .baseMapsContainer {
         position: absolute;
         bottom: 2rem;
-        right: 1rem;
+        left: 1rem;
         z-index: 100000;
 
         .baseMapsWrapper {
             gap: 1rem;
             position: absolute;
-            right: 3rem;
+            left: 4rem;
             display: flex;
             bottom: 0;
             pointer-events: none;
@@ -962,7 +973,7 @@ body {
                 border-radius: 4px;
                 transition: all .2s ease-in-out;
                 opacity: 0;
-                transform: translateX(100px);
+                transform: translateX(-100px);
 
                 &:hover {
                     background-color: #ffff;
@@ -1001,13 +1012,13 @@ body {
 
         .baseMapTrigger {
             position: absolute;
-            right: 0;
+            left: 0;
             bottom: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 2rem;
-            width: 2.5rem;
+            height: 3.5rem;
+            width: 3.5rem;
             border: none;
             background-color: #ffffff;
             z-index: 10000;
@@ -1041,12 +1052,20 @@ body {
         z-index: 1;
     }
 
-    // User Avatar Container
-    .userAvatarContainer {
+    // Top Right Controls (Dashboard + User Avatar)
+    .topRightControls {
         position: absolute;
         top: 1rem;
         right: 1rem;
-        z-index: 100001;
+        z-index: 1000;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    // User Avatar Container
+    .userAvatarContainer {
+        position: relative;
     }
 
     .userAvatar {
@@ -1259,6 +1278,10 @@ body.dark-mode {
             .collapseDashboardWrapper {
                 background-color: #16213e;
 
+                &:hover {
+                    background-color: #1e2a4a;
+                }
+
                 .collpaseDashboardWrapper i {
                     color: #e0e6f0;
                 }
@@ -1326,6 +1349,10 @@ body.dark-mode {
                     .progressRing__bg {
                         stroke: #2a3a5a;
                     }
+
+                    .progressRing__value {
+                        color: #e0e6f0;
+                    }
                 }
             }
 
@@ -1390,6 +1417,19 @@ body.dark-mode {
             }
         }
 
+        // Legend Items
+        .legendItem {
+            border-bottom-color: #2a3a5a;
+
+            &__label {
+                color: #e0e6f0;
+            }
+
+            &__symbol--icon i {
+                color: #8892a8;
+            }
+        }
+
         // Layers Content
         .layersContent {
             background-color: #1a1a2e;
@@ -1403,6 +1443,12 @@ body.dark-mode {
             &__header {
                 background-color: #1e2a4a;
 
+                &:hover {
+                    .layerAccordion__title span {
+                        color: #5a94e8;
+                    }
+                }
+
                 &.active {
                     background-color: #1e2a4a;
                 }
@@ -1410,6 +1456,11 @@ body.dark-mode {
 
             &__title {
                 color: #e0e6f0;
+
+                span {
+                    color: #e0e6f0;
+                    transition: color 0.2s ease;
+                }
             }
 
             &__drag i {
@@ -1531,7 +1582,7 @@ body.dark-mode {
             border-color: #2a3a5a;
 
             &__header {
-                background-color: #16213e;
+                background: #16213e;
                 border-bottom-color: #2a3a5a;
             }
 

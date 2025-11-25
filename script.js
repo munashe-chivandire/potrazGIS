@@ -87,7 +87,7 @@ const closeMenu = () => {
     baseMapsWrapper.classList.remove('open');
     gsap.to(mapButtons, {
         opacity: 0,
-        x: 100,
+        x: -100,
         duration: 0.2,
         stagger: {
             each: 0.05,
@@ -472,8 +472,9 @@ if (darkModeToggle) {
         }
     });
 
-    // Check for saved preference on load
-    if (localStorage.getItem('darkMode') === 'enabled') {
+    // Check for saved preference on load (default to dark mode)
+    const savedDarkMode = localStorage.getItem('darkMode');
+    if (savedDarkMode === null || savedDarkMode === 'enabled') {
         darkModeToggle.checked = true;
         document.body.classList.add('dark-mode');
         updateChartTheme(true);
