@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TELECOM GIS - MAP</title>
+    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.17.11/dist/css/uikit.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+    <div class="mainPageWrapper">
+        <div class="mapContainer" id="map"></div>
+
+        <div class="topSearchContainer">
+            <select name="" id="">
+                <option value="" disabled selected>Select Filter Category</option>
+            </select>
+            <select name="" id="">
+                <option value="" disabled selected>Select District</option>
+            </select>
+        </div>
+
+        <!-- User Avatar Dropdown -->
+        <div class="userAvatarContainer">
+            <button class="userAvatar" type="button">
+                <span class="userAvatar__initials">JD</span>
+            </button>
+            <div class="userDropdown">
+                <div class="userDropdown__header">
+                    <span class="userDropdown__name">John Doe</span>
+                    <span class="userDropdown__email">john.doe@potraz.gov.zw</span>
+                </div>
+                <div class="userDropdown__divider"></div>
+                <a href="../index.html" class="userDropdown__item">
+                    <i class="fas fa-home"></i>
+                    <span>Landing Page</span>
+                </a>
+                <a href="#" class="userDropdown__item">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+                <div class="userDropdown__item userDropdown__item--toggle">
+                    <div class="userDropdown__itemLeft">
+                        <i class="fas fa-moon"></i>
+                        <span>Dark Mode</span>
+                    </div>
+                    <label class="darkModeToggle">
+                        <input type="checkbox" id="darkModeToggle">
+                        <span class="darkModeToggle__slider"></span>
+                    </label>
+                </div>
+                <div class="userDropdown__divider"></div>
+                <a href="#" class="userDropdown__item userDropdown__item--logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="dashboardsWrapper">
+
+            <button class="collapseDashboardWrapper">
+                <span class="collpaseDashboardWrapper">
+                    <i class="fas fa-chevron-left"></i>
+                </span>
+            </button>
+
+                <ul class="topSwitcherDashboards">
+                    <li><a href="#" class="activeBtn"><span class="iconWrapper"><i class="fas fa-chart-line"></i></span>Dashboards</a></li>
+                    <li><a href="#"><span class="iconWrapper"><i class="fas fa-layer-group"></i></span>Map Layers</a></li>
+                    <li><a href="#"><span class="iconWrapper"><i class="fas fa-list"></i></span>Map Legends</a></li>
+                </ul>
+
+                <!-- Switcher -->
+                <div class="dashboardWrapperSwitcher active">
+                        <div class="dashboardContent">
+                            <!-- KPI Cards Grid -->
+                            <div class="kpiGrid">
+                                <!-- Total MNO Sites -->
+                                <div class="kpiCard kpiCard--primary">
+                                    <div class="kpiCard__info">
+                                        <span class="kpiCard__label">Total MNO Sites</span>
+                                        <span class="kpiCard__value">44,155</span>
+                                        <span class="kpiCard__subtext">of 44,155 sites</span>
+                                    </div>
+                                    <div class="kpiCard__progress">
+                                        <svg class="progressRing" viewBox="0 0 60 60">
+                                            <circle class="progressRing__bg" cx="30" cy="30" r="26"/>
+                                            <circle class="progressRing__fill progressRing__fill--primary" cx="30" cy="30" r="26" stroke-dasharray="163.36" stroke-dashoffset="0"/>
+                                        </svg>
+                                        <span class="progressRing__value">100%</span>
+                                    </div>
+                                </div>
+
+                                <!-- Econet Sites -->
+                                <div class="kpiCard kpiCard--econet">
+                                    <div class="kpiCard__info">
+                                        <span class="kpiCard__label">Econet Sites</span>
+                                        <span class="kpiCard__value">23,428</span>
+                                        <span class="kpiCard__subtext">of 23,428 sites</span>
+                                    </div>
+                                    <div class="kpiCard__progress">
+                                        <svg class="progressRing" viewBox="0 0 60 60">
+                                            <circle class="progressRing__bg" cx="30" cy="30" r="26"/>
+                                            <circle class="progressRing__fill progressRing__fill--econet" cx="30" cy="30" r="26" stroke-dasharray="163.36" stroke-dashoffset="0"/>
+                                        </svg>
+                                        <span class="progressRing__value">100%</span>
+                                    </div>
+                                </div>
+
+                                <!-- Netone Sites -->
+                                <div class="kpiCard kpiCard--netone">
+                                    <div class="kpiCard__info">
+                                        <span class="kpiCard__label">Netone Sites</span>
+                                        <span class="kpiCard__value">16,394</span>
+                                        <span class="kpiCard__subtext">of 16,394 sites</span>
+                                    </div>
+                                    <div class="kpiCard__progress">
+                                        <svg class="progressRing" viewBox="0 0 60 60">
+                                            <circle class="progressRing__bg" cx="30" cy="30" r="26"/>
+                                            <circle class="progressRing__fill progressRing__fill--netone" cx="30" cy="30" r="26" stroke-dasharray="163.36" stroke-dashoffset="0"/>
+                                        </svg>
+                                        <span class="progressRing__value">100%</span>
+                                    </div>
+                                </div>
+
+                                <!-- Telecel Sites -->
+                                <div class="kpiCard kpiCard--telecel">
+                                    <div class="kpiCard__info">
+                                        <span class="kpiCard__label">Telecel Sites</span>
+                                        <span class="kpiCard__value">4,333</span>
+                                        <span class="kpiCard__subtext">of 4,333 sites</span>
+                                    </div>
+                                    <div class="kpiCard__progress">
+                                        <svg class="progressRing" viewBox="0 0 60 60">
+                                            <circle class="progressRing__bg" cx="30" cy="30" r="26"/>
+                                            <circle class="progressRing__fill progressRing__fill--telecel" cx="30" cy="30" r="26" stroke-dasharray="163.36" stroke-dashoffset="0"/>
+                                        </svg>
+                                        <span class="progressRing__value">100%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Chart Type Toggle -->
+                            <ul class="chartToggle">
+                                <li><a href="#" class="activeBtn" data-chart="bar"><span class="iconWrapper"><i class="fas fa-chart-bar"></i></span>Bar</a></li>
+                                <li><a href="#" data-chart="pie"><span class="iconWrapper"><i class="fas fa-chart-pie"></i></span>Pie</a></li>
+                            </ul>
+
+                            <!-- Chart Section -->
+                            <div class="chartSection">
+                                <div class="chartSection__header">
+                                    <h3 class="chartSection__title">Sites by Technology</h3>
+                                </div>
+                                <div class="chartContainer">
+                                    <canvas id="sitesChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <!-- Dashboard End -->
+                <div class="mapLayersWrapperSwitcher">
+                        <div class="layersContent">
+                            <!-- Control Points -->
+                            <div class="layerAccordion" data-layer="control-points">
+                                <div class="layerAccordion__header">
+                                    <div class="layerAccordion__drag">
+                                        <i class="fas fa-grip-lines"></i>
+                                    </div>
+                                    <div class="layerAccordion__info">
+                                        <div class="layerAccordion__title">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <span>Control Points</span>
+                                        </div>
+                                        <div class="layerAccordion__slider">
+                                            <input type="range" min="0" max="100" value="75">
+                                            <span class="layerAccordion__sliderValue">75%</span>
+                                        </div>
+                                    </div>
+                                    <div class="layerAccordion__controls">
+                                        <label class="layerToggle">
+                                            <input type="checkbox" checked>
+                                            <span class="layerToggle__slider"></span>
+                                        </label>
+                                        <button class="layerAccordion__chevron">
+                                            <i class="fas fa-chevron-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="layerAccordion__content">
+                                    <div class="subLayer">
+                                        <div class="subLayer__header">
+                                            <span class="subLayer__name">CORS Stations</span>
+                                            <label class="layerToggle layerToggle--small">
+                                                <input type="checkbox" checked>
+                                                <span class="layerToggle__slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="subLayer__slider">
+                                            <input type="range" min="0" max="100" value="80">
+                                            <span class="subLayer__sliderValue">80%</span>
+                                        </div>
+                                    </div>
+                                    <div class="subLayer">
+                                        <div class="subLayer__header">
+                                            <span class="subLayer__name">Town Survey Marks</span>
+                                            <label class="layerToggle layerToggle--small">
+                                                <input type="checkbox" checked>
+                                                <span class="layerToggle__slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="subLayer__slider">
+                                            <input type="range" min="0" max="100" value="70">
+                                            <span class="subLayer__sliderValue">70%</span>
+                                        </div>
+                                    </div>
+                                    <div class="subLayer">
+                                        <div class="subLayer__header">
+                                            <span class="subLayer__name">Trig Beacons</span>
+                                            <label class="layerToggle layerToggle--small">
+                                                <input type="checkbox">
+                                                <span class="layerToggle__slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="subLayer__slider">
+                                            <input type="range" min="0" max="100" value="60">
+                                            <span class="subLayer__sliderValue">60%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Cadastral -->
+                            <div class="layerAccordion" data-layer="cadastral">
+                                <div class="layerAccordion__header">
+                                    <div class="layerAccordion__drag">
+                                        <i class="fas fa-grip-lines"></i>
+                                    </div>
+                                    <div class="layerAccordion__info">
+                                        <div class="layerAccordion__title">
+                                            <i class="fas fa-map"></i>
+                                            <span>Cadastral</span>
+                                        </div>
+                                        <div class="layerAccordion__slider">
+                                            <input type="range" min="0" max="100" value="60">
+                                            <span class="layerAccordion__sliderValue">60%</span>
+                                        </div>
+                                    </div>
+                                    <div class="layerAccordion__controls">
+                                        <label class="layerToggle">
+                                            <input type="checkbox" checked>
+                                            <span class="layerToggle__slider"></span>
+                                        </label>
+                                        <button class="layerAccordion__chevron">
+                                            <i class="fas fa-chevron-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="layerAccordion__content">
+                                    <div class="subLayer">
+                                        <div class="subLayer__header">
+                                            <span class="subLayer__name">Land Parcels</span>
+                                            <label class="layerToggle layerToggle--small">
+                                                <input type="checkbox" checked>
+                                                <span class="layerToggle__slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="subLayer__slider">
+                                            <input type="range" min="0" max="100" value="85">
+                                            <span class="subLayer__sliderValue">85%</span>
+                                        </div>
+                                    </div>
+                                    <div class="subLayer">
+                                        <div class="subLayer__header">
+                                            <span class="subLayer__name">Roads</span>
+                                            <label class="layerToggle layerToggle--small">
+                                                <input type="checkbox" checked>
+                                                <span class="layerToggle__slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="subLayer__slider">
+                                            <input type="range" min="0" max="100" value="90">
+                                            <span class="subLayer__sliderValue">90%</span>
+                                        </div>
+                                    </div>
+                                    <div class="subLayer">
+                                        <div class="subLayer__header">
+                                            <span class="subLayer__name">Buildings</span>
+                                            <label class="layerToggle layerToggle--small">
+                                                <input type="checkbox" checked>
+                                                <span class="layerToggle__slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="subLayer__slider">
+                                            <input type="range" min="0" max="100" value="75">
+                                            <span class="subLayer__sliderValue">75%</span>
+                                        </div>
+                                    </div>
+                                    <div class="subLayer">
+                                        <div class="subLayer__header">
+                                            <span class="subLayer__name">Mining Leases</span>
+                                            <label class="layerToggle layerToggle--small">
+                                                <input type="checkbox">
+                                                <span class="layerToggle__slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="subLayer__slider">
+                                            <input type="range" min="0" max="100" value="50">
+                                            <span class="subLayer__sliderValue">50%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Administrative Boundaries -->
+                            <div class="layerAccordion" data-layer="boundaries">
+                                <div class="layerAccordion__header">
+                                    <div class="layerAccordion__drag">
+                                        <i class="fas fa-grip-lines"></i>
+                                    </div>
+                                    <div class="layerAccordion__info">
+                                        <div class="layerAccordion__title">
+                                            <i class="fas fa-globe-africa"></i>
+                                            <span>Boundaries</span>
+                                        </div>
+                                        <div class="layerAccordion__slider">
+                                            <input type="range" min="0" max="100" value="50">
+                                            <span class="layerAccordion__sliderValue">50%</span>
+                                        </div>
+                                    </div>
+                                    <div class="layerAccordion__controls">
+                                        <label class="layerToggle">
+                                            <input type="checkbox" checked>
+                                            <span class="layerToggle__slider"></span>
+                                        </label>
+                                        <button class="layerAccordion__chevron">
+                                            <i class="fas fa-chevron-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="layerAccordion__content">
+                                    <div class="subLayer">
+                                        <div class="subLayer__header">
+                                            <span class="subLayer__name">Suburbs</span>
+                                            <label class="layerToggle layerToggle--small">
+                                                <input type="checkbox" checked>
+                                                <span class="layerToggle__slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="subLayer__slider">
+                                            <input type="range" min="0" max="100" value="70">
+                                            <span class="subLayer__sliderValue">70%</span>
+                                        </div>
+                                    </div>
+                                    <div class="subLayer">
+                                        <div class="subLayer__header">
+                                            <span class="subLayer__name">Towns</span>
+                                            <label class="layerToggle layerToggle--small">
+                                                <input type="checkbox" checked>
+                                                <span class="layerToggle__slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="subLayer__slider">
+                                            <input type="range" min="0" max="100" value="80">
+                                            <span class="subLayer__sliderValue">80%</span>
+                                        </div>
+                                    </div>
+                                    <div class="subLayer">
+                                        <div class="subLayer__header">
+                                            <span class="subLayer__name">Districts</span>
+                                            <label class="layerToggle layerToggle--small">
+                                                <input type="checkbox" checked>
+                                                <span class="layerToggle__slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="subLayer__slider">
+                                            <input type="range" min="0" max="100" value="60">
+                                            <span class="subLayer__sliderValue">60%</span>
+                                        </div>
+                                    </div>
+                                    <div class="subLayer">
+                                        <div class="subLayer__header">
+                                            <span class="subLayer__name">Provinces</span>
+                                            <label class="layerToggle layerToggle--small">
+                                                <input type="checkbox">
+                                                <span class="layerToggle__slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="subLayer__slider">
+                                            <input type="range" min="0" max="100" value="40">
+                                            <span class="subLayer__sliderValue">40%</span>
+                                        </div>
+                                    </div>
+                                    <div class="subLayer">
+                                        <div class="subLayer__header">
+                                            <span class="subLayer__name">Country</span>
+                                            <label class="layerToggle layerToggle--small">
+                                                <input type="checkbox">
+                                                <span class="layerToggle__slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="subLayer__slider">
+                                            <input type="range" min="0" max="100" value="30">
+                                            <span class="subLayer__sliderValue">30%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Base Layers -->
+                            <div class="layerAccordion" data-layer="base">
+                                <div class="layerAccordion__header">
+                                    <div class="layerAccordion__drag">
+                                        <i class="fas fa-grip-lines"></i>
+                                    </div>
+                                    <div class="layerAccordion__info">
+                                        <div class="layerAccordion__title">
+                                            <i class="fas fa-layer-group"></i>
+                                            <span>Base Layers</span>
+                                        </div>
+                                        <div class="layerAccordion__slider">
+                                            <input type="range" min="0" max="100" value="100">
+                                            <span class="layerAccordion__sliderValue">100%</span>
+                                        </div>
+                                    </div>
+                                    <div class="layerAccordion__controls">
+                                        <label class="layerToggle">
+                                            <input type="checkbox" checked>
+                                            <span class="layerToggle__slider"></span>
+                                        </label>
+                                        <button class="layerAccordion__chevron">
+                                            <i class="fas fa-chevron-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="layerAccordion__content">
+                                    <div class="subLayer">
+                                        <div class="subLayer__header">
+                                            <span class="subLayer__name">OpenStreetMap</span>
+                                            <label class="layerToggle layerToggle--small">
+                                                <input type="checkbox" checked>
+                                                <span class="layerToggle__slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="subLayer__slider">
+                                            <input type="range" min="0" max="100" value="100">
+                                            <span class="subLayer__sliderValue">100%</span>
+                                        </div>
+                                    </div>
+                                    <div class="subLayer">
+                                        <div class="subLayer__header">
+                                            <span class="subLayer__name">Satellite</span>
+                                            <label class="layerToggle layerToggle--small">
+                                                <input type="checkbox">
+                                                <span class="layerToggle__slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="subLayer__slider">
+                                            <input type="range" min="0" max="100" value="75">
+                                            <span class="subLayer__sliderValue">75%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <!-- Map Layers End -->
+                <div class="mapLegendsWrapperSwitcher">
+                        <div class="legendContent">
+                            <!-- Cadastral Layers -->
+                            <div class="legendGroup open">
+                                <button class="legendGroup__header">
+                                    <span>Cadastral Layers</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="legendGroup__items">
+                                    <div class="legendItem">
+                                        <span class="legendItem__symbol legendItem__symbol--square" style="background-color: #3b82f6;"></span>
+                                        <span class="legendItem__label">Land Parcels</span>
+                                    </div>
+                                    <div class="legendItem">
+                                        <span class="legendItem__symbol legendItem__symbol--square" style="background-color: #9ca3af;"></span>
+                                        <span class="legendItem__label">Roads</span>
+                                    </div>
+                                    <div class="legendItem">
+                                        <span class="legendItem__symbol legendItem__symbol--square" style="background-color: #ef4444;"></span>
+                                        <span class="legendItem__label">Buildings</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Control Network -->
+                            <div class="legendGroup open">
+                                <button class="legendGroup__header">
+                                    <span>Control Network</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="legendGroup__items">
+                                    <div class="legendItem">
+                                        <span class="legendItem__symbol legendItem__symbol--circle" style="background-color: #fbbf24;"></span>
+                                        <span class="legendItem__label">CORS Stations</span>
+                                    </div>
+                                    <div class="legendItem">
+                                        <span class="legendItem__symbol legendItem__symbol--circle" style="background-color: #a855f7;"></span>
+                                        <span class="legendItem__label">Town Survey Marks (TSMs)</span>
+                                    </div>
+                                    <div class="legendItem">
+                                        <span class="legendItem__symbol legendItem__symbol--circle" style="background-color: #f97316;"></span>
+                                        <span class="legendItem__label">Trig Beacons</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Administrative Boundaries -->
+                            <div class="legendGroup open">
+                                <button class="legendGroup__header">
+                                    <span>Administrative Boundaries</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="legendGroup__items">
+                                    <div class="legendItem">
+                                        <span class="legendItem__symbol legendItem__symbol--line" style="background-color: #22c55e;"></span>
+                                        <span class="legendItem__label">Suburbs</span>
+                                    </div>
+                                    <div class="legendItem">
+                                        <span class="legendItem__symbol legendItem__symbol--line" style="background-color: #eab308;"></span>
+                                        <span class="legendItem__label">Towns</span>
+                                    </div>
+                                    <div class="legendItem">
+                                        <span class="legendItem__symbol legendItem__symbol--line" style="background-color: #3b82f6;"></span>
+                                        <span class="legendItem__label">Districts</span>
+                                    </div>
+                                    <div class="legendItem">
+                                        <span class="legendItem__symbol legendItem__symbol--line" style="background-color: #f97316;"></span>
+                                        <span class="legendItem__label">Provinces</span>
+                                    </div>
+                                    <div class="legendItem">
+                                        <span class="legendItem__symbol legendItem__symbol--line" style="background-color: #9ca3af;"></span>
+                                        <span class="legendItem__label">Country Boundary</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Map Symbols -->
+                            <div class="legendGroup open">
+                                <button class="legendGroup__header">
+                                    <span>Map Symbols</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="legendGroup__items">
+                                    <div class="legendItem">
+                                        <span class="legendItem__symbol legendItem__symbol--outline" style="border-color: #ec4899;"></span>
+                                        <span class="legendItem__label">Selected Property</span>
+                                    </div>
+                                    <div class="legendItem">
+                                        <span class="legendItem__symbol legendItem__symbol--square" style="background-color: #f97316;"></span>
+                                        <span class="legendItem__label">Search Results</span>
+                                    </div>
+                                    <div class="legendItem">
+                                        <span class="legendItem__symbol legendItem__symbol--icon"><i class="fas fa-ruler-combined"></i></span>
+                                        <span class="legendItem__label">Measurement Tools</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <!-- Map Legends End -->
+            
+        </div>
+
+
+        <div class="toolsContainer">
+            <a href="#" class="zoomInBtn" uk-tooltip="title: Zoom In; pos: left">
+                <span class="iconWrapper"><img src="./assets/icons/zoom-in.svg" alt="Zoom In"></span>
+            </a>
+            <a href="#" class="zoomOut" uk-tooltip="title: Zoom Out; pos: left">
+                <span class="iconWrapper"><img src="./assets/icons/zoom-out.svg" alt="Zoom Out"></span>
+            </a>
+            <a href="#" class="panMap" uk-tooltip="title: Pan Map; pos: left">
+                <span class="iconWrapper"><img src="./assets/icons/panMap.svg" alt="Pan Map"></span>
+            </a>
+            <a href="#" class="mapProfiling" uk-tooltip="title: Map Profiling; pos: left">
+                <span class="iconWrapper"><img src="./assets/icons/mapProfiling.svg" alt="Map Profiling"></span>
+            </a>
+            <a href="#" class="measureArea" uk-tooltip="title: Measure Area; pos: left">
+                <span class="iconWrapper"><img src="./assets/icons/measureArea.svg" alt="Measure Area"></span>
+            </a>
+            <a href="#" class="measureDistance" uk-tooltip="title: Measure Distance; pos: left">
+                <span class="iconWrapper"><img src="./assets/icons/measureDistance.svg" alt="Measure Distance"></span>
+            </a>
+            <a href="#" class="clearMap" uk-tooltip="title: Clear Map; pos: left">
+                <span class="iconWrapper"><img src="./assets/icons/clearMap.svg" alt="Clear Map"></span>
+            </a>
+        </div>
+
+        <div class="baseMapsContainer">
+            <button class="baseMapTrigger" type="button" uk-tooltip="title: Base Maps; pos: left">
+                <span class="iconWrapper"><img src="./assets/icons/baseMap.svg" alt="Base Maps"></span>
+            </button>
+            <div class="baseMapsWrapper">
+                    <a href="#" class="openStreetMapBtn active">
+                        <span class="mapImage"><img src="./assets/OpenStreetMap.jpg" alt=""></span>
+                        <span class="mapText">Open Street Map</span>
+                    </a>
+                    <a href="#" class="satelliteMapBtn">
+                        <span class="mapImage"><img src="./assets/OpenStreetMap.jpg" alt=""></span>
+                        <span class="mapText">Satellite</span>
+                    </a>
+                    <a href="#" class="terrainMapBtn">
+                        <span class="mapImage"><img src="./assets/OpenStreetMap.jpg" alt=""></span>
+                        <span class="mapText">Terrain</span>
+                    </a>
+                    <a href="#" class="darkMapBtn">
+                        <span class="mapImage"><img src="./assets/OpenStreetMap.jpg" alt=""></span>
+                        <span class="mapText">Dark Mode</span>
+                    </a>
+                    <a href="#" class="lightMapBtn">
+                        <span class="mapImage"><img src="./assets/OpenStreetMap.jpg" alt=""></span>
+                        <span class="mapText">Light Mode</span>
+                    </a>
+                    <a href="#" class="hybridMapBtn">
+                        <span class="mapImage"><img src="./assets/OpenStreetMap.jpg" alt=""></span>
+                        <span class="mapText">Hybrid</span>
+                    </a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.11/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.11/dist/js/uikit-icons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script src="./map.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>
